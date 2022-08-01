@@ -17,11 +17,9 @@ class RocketsLaunchCoreTest: XCTestCase {
         
         let motionSubject = PassthroughSubject<DeviceMotion, Error>()
         
-        var motionManagerIsLive = false
-        
         let motionManager: MotionManager = .unimplemented(
-            create: { _ in .fireAndForget { motionManagerIsLive = true } },
-            destroy: { _ in .fireAndForget { motionManagerIsLive = false } },
+            create: { _ in .none },
+            destroy: { _ in .none },
             deviceMotion: { _ in nil },
             startDeviceMotionUpdates: { _, _, _ in motionSubject.eraseToEffect() },
             stopDeviceMotionUpdates: { _ in
@@ -46,33 +44,33 @@ class RocketsLaunchCoreTest: XCTestCase {
         
         var updatedDeviceMotion = deviceMotion
         updatedDeviceMotion.attitude = .init(quaternion: .init(x: 1, y: 1, z: 1, w: 4))
-    
         
-        store.assert(
-            .send(.startAnalyzing),
-            
-            // First data from MotionManager
-            
+        
+        store
+            .send(.startAnalyzing)
+        
+        // First data from MotionManager
+        store
             .send(.motionUpdate(.success(deviceMotion))) {
                 $0.isFirstData = false
                 $0.launchRocket = false
                 $0.pitch = deviceMotion.attitude.roll
-            },
-            
-            // Same position -> no update
-            
-            .send(.motionUpdate(.success(deviceMotion))),
-            
-            // New position -> launch rocket
-            
+            }
+        
+        // Same position -> no update
+        store
+            .send(.motionUpdate(.success(deviceMotion)))
+        
+        // New position -> launch rocket
+        store
             .send(.motionUpdate(.success(updatedDeviceMotion))) {
                 $0.launchRocket = true
                 $0.pitch = deviceMotion.attitude.roll
-            },
-            
-            // Stop analyzing
-            
+            }
+        
+        // Stop analyzing
+        store
             .send(.stopAnalyzing)
-        )
+        
     }
 }

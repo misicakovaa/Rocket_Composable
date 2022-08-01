@@ -7,11 +7,12 @@
 
 import SwiftUI
 import ComposableArchitecture
+import ComposablePresentation
 
 //MARK: - State
 
 struct AppState: Equatable {
-    var details = [Rocket:DetailState]()
+    var detail: DetailState? = nil
     var fetchingState = FetchingState.na
     var rockets = [Rocket]()
     var alert: AlertState<AppAction>?
@@ -31,6 +32,8 @@ enum AppAction: Equatable {
     case getRockets
     case rocketsResponse(Result<[Rocket], RocketsManager.Failure>)
     case detailAction(DetailAction)
+    case didTapDetailButton(Rocket?)
+    case didDismissDetail
 }
 
 //MARK: - View
@@ -59,20 +62,23 @@ struct RocketsListView: View {
                         List(rockets) { rocket in
                             
                             //MARK: -  Rocket info row containing:
-                            // - image
-                            // - rocket name
-                            // - first flight
+                            // image, rocket name, first flight
                             
-                            NavigationLink(
-                                destination: RocketDetailView(store: store.scope(
-                                    state: { $0.details[rocket] ?? DetailState(rocket: errorRocket) },
-                                    action: AppAction.detailAction)
-                                )
-                            ) {
-                                RocketRow(
-                                    rocketName: rocket.rocketName,
-                                    firstFlight: rocket.firstFlight)
-                            }
+                            NavigationLinkWithStore(
+                                store.scope(
+                                    state: { $0.detail },
+                                    action: AppAction.detailAction
+                                ),
+                                setActive: { active in
+                                    viewStore.send(active ? .didTapDetailButton(rocket) : .didDismissDetail)
+                                },
+                                destination: RocketDetailView.init(store:),
+                                label: {
+                                    RocketRow(
+                                        rocketName: rocket.rocketName,
+                                        firstFlight: rocket.firstFlight)
+                                }
+                            )
                         }
                         .navigationTitle("Rockets")
                     }

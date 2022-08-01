@@ -32,11 +32,6 @@ let appReducer = Reducer<AppState, AppAction, AppEnvironment> { state, action, e
     case .rocketsResponse(.success(let rockets)):
         state.rockets = rockets
         state.fetchingState = .success(rockets)
-        
-        rockets.forEach { rocket in
-            state.details[rocket] = DetailState(rocket: rocket)
-        }
-        
         return .none
         
     case .rocketsResponse(.failure(let error)):
@@ -54,6 +49,14 @@ let appReducer = Reducer<AppState, AppAction, AppEnvironment> { state, action, e
         return .none
         
     case .detailAction:
+        return .none
+        
+    case .didTapDetailButton(.some(let rocket)):
+        state.detail = DetailState(rocket: rocket)
+        return .none
+        
+    case .didDismissDetail, .didTapDetailButton(.none):
+        state.detail = nil
         return .none
     }
 }

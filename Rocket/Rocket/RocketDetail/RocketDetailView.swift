@@ -88,7 +88,7 @@ struct RocketDetailView: View {
                 // Launch button
                 ToolbarItem(placement: .navigationBarTrailing) {
                     NavigationLink(
-                        // TODO: Predelat (pullback)
+                        // TODO: Predelat (pullback) ??? udelat scope nebo ne?
                         destination: RocketLaunchView(
                             store:Store(initialState: LaunchState(),
                                         reducer: launchReducer,
