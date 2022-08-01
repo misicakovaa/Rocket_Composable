@@ -13,6 +13,8 @@ import XCTest
 
 class RocketsListTest: XCTestCase {
     
+    let testScheduler = DispatchQueue.test
+    
     func test_RocketsListCore_GetRockets_Success() {
         
         let rockets = [exampleRocket1, exampleRocket2]
@@ -25,7 +27,7 @@ class RocketsListTest: XCTestCase {
         
         let store = TestStore(initialState: AppState(),
                               reducer: appReducer,
-                              environment: AppEnvironment(mainQueue: .main,
+                              environment: AppEnvironment(mainQueue: self.testScheduler.eraseToAnyScheduler(),
                                                           rocketsManager: rocketsManager))
         
         store
@@ -33,8 +35,7 @@ class RocketsListTest: XCTestCase {
                 $0.fetchingState = .loading
             }
         
-        // TODO: Scheduler
-        _ = XCTWaiter.wait(for: [self.expectation(description: "wait")], timeout: 0.1)
+        testScheduler.advance(by: 1)
         
         store
             .receive(.rocketsResponse(Result.success(rockets))) {
