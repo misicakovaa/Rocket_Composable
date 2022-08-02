@@ -45,7 +45,7 @@ class RocketsLaunchCoreTest: XCTestCase {
         var updatedDeviceMotion = deviceMotion
         updatedDeviceMotion.attitude = .init(quaternion: .init(x: 1, y: 1, z: 1, w: 4))
         
-        
+        // start analyzing
         store
             .send(.startAnalyzing)
         

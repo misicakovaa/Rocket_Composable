@@ -10,7 +10,7 @@ import CoreMotion
 import ComposableArchitecture
 import ComposableCoreMotion
 
-//MARK: -State
+//MARK: - State
 
 struct LaunchState: Equatable {
     var launchRocket = false

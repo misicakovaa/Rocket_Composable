@@ -28,7 +28,7 @@ class RocketsListTest: XCTestCase {
         let store = TestStore(initialState: AppState(),
                               reducer: appReducer,
                               environment: AppEnvironment(mainQueue: self.testScheduler.eraseToAnyScheduler(),
-                                                          rocketsManager: rocketsManager))
+                                                          rocketsManager: rocketsManager, motionManager: .live))
         
         store
             .send(.getRockets) {

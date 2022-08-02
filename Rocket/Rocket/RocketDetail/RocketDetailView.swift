@@ -45,7 +45,6 @@ struct RocketDetailView: View {
                 //MARK: - Parameters section
                 
                 TitledSection(title: "Parameters") {
-                    
                     parametersSectionView
                         .padding(.bottom)
                 }
@@ -88,11 +87,8 @@ struct RocketDetailView: View {
                 // Launch button
                 ToolbarItem(placement: .navigationBarTrailing) {
                     NavigationLink(
-                        // TODO: Predelat (pullback) ??? udelat scope nebo ne?
                         destination: RocketLaunchView(
-                            store:Store(initialState: LaunchState(),
-                                        reducer: launchReducer,
-                                        environment: LaunchEnvironment(motionManager: .live))
+                            store: store.scope(state: \.launchState, action: DetailAction.launchAction)
                         )
                     ) {
                         Text("Launch")
@@ -131,7 +127,7 @@ struct RocketDetailView_Previews: PreviewProvider {
         RocketDetailView(
             store: Store(initialState: DetailState(rocket: exampleRocket1),
                          reducer: detailReducer,
-                         environment: DetailEnvironment()
+                         environment: DetailEnvironment(motionManager: .live)
                         )
         )
     }

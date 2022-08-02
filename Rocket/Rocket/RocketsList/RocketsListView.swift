@@ -12,7 +12,8 @@ import ComposablePresentation
 //MARK: - State
 
 struct AppState: Equatable {
-    var detail: DetailState? = nil
+    var detailState = DetailState(rocket: errorRocket)
+    var presentDetail = false
     var fetchingState = FetchingState.na
     var rockets = [Rocket]()
     var alert: AlertState<AppAction>?
@@ -64,21 +65,19 @@ struct RocketsListView: View {
                             //MARK: -  Rocket info row containing:
                             // image, rocket name, first flight
                             
-                            NavigationLinkWithStore(
-                                store.scope(
-                                    state: { $0.detail },
-                                    action: AppAction.detailAction
-                                ),
-                                setActive: { active in
-                                    viewStore.send(active ? .didTapDetailButton(rocket) : .didDismissDetail)
-                                },
-                                destination: RocketDetailView.init(store:),
-                                label: {
-                                    RocketRow(
-                                        rocketName: rocket.rocketName,
-                                        firstFlight: rocket.firstFlight)
-                                }
-                            )
+                            NavigationLink(destination: RocketDetailView(store: self.store.scope(state: \.detailState, action: AppAction.detailAction)),
+                                           isActive: Binding(
+                                            get: { viewStore.state.presentDetail },
+                                            set: { active in
+                                                if active {
+                                                    viewStore.send(.didTapDetailButton(rocket))
+                                                } else {
+                                                    viewStore.send(.didDismissDetail)
+                                                }
+                                            }
+                                           )) {
+                                               RocketRow(rocketName: rocket.rocketName, firstFlight: rocket.firstFlight)
+                                           }
                         }
                         .navigationTitle("Rockets")
                     }
@@ -94,6 +93,7 @@ struct RocketsListView: View {
                 viewStore.send(.getRockets)
             }
             .alert(self.store.scope(state: \.alert), dismiss: .retry)
+            .navigationViewStyle(StackNavigationViewStyle())
         }
     }
 }
@@ -103,7 +103,8 @@ struct RocketsListView_Previews: PreviewProvider {
         RocketsListView(store: Store(initialState: AppState(),
                                      reducer: appReducer,
                                      environment: AppEnvironment(mainQueue: .main,
-                                                                 rocketsManager: .live)
+                                                                 rocketsManager: .live,
+                                                                 motionManager: .live)
                                     )
         )
     }

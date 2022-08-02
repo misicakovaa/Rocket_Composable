@@ -35,7 +35,6 @@
 		F5FFF5772891BDE800DD2AFB /* Stages.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5FFF5762891BDE800DD2AFB /* Stages.swift */; };
 		F5FFF58A2892B4C900DD2AFB /* RocketsListCoreTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5FFF5892892B4C900DD2AFB /* RocketsListCoreTest.swift */; };
 		F5FFF58E2892D8BA00DD2AFB /* RocketsLaunchCoreTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5FFF58D2892D8BA00DD2AFB /* RocketsLaunchCoreTest.swift */; };
-		F5FFF59128970E1600DD2AFB /* ComposablePresentation in Frameworks */ = {isa = PBXBuildFile; productRef = F5FFF59028970E1600DD2AFB /* ComposablePresentation */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,7 +84,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F5FFF59128970E1600DD2AFB /* ComposablePresentation in Frameworks */,
 				F5FFF57228918B4800DD2AFB /* ComposableCoreMotion in Frameworks */,
 				F5FFF55B288FFE5200DD2AFB /* ComposableArchitecture in Frameworks */,
 			);
@@ -242,7 +240,6 @@
 			packageProductDependencies = (
 				F5FFF55A288FFE5200DD2AFB /* ComposableArchitecture */,
 				F5FFF57128918B4800DD2AFB /* ComposableCoreMotion */,
-				F5FFF59028970E1600DD2AFB /* ComposablePresentation */,
 			);
 			productName = Rocket;
 			productReference = F5EF80BB287C743E0060FDC0 /* Rocket.app */;
@@ -299,7 +296,6 @@
 			packageReferences = (
 				F5FFF559288FFE5200DD2AFB /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
 				F5FFF57028918B4800DD2AFB /* XCRemoteSwiftPackageReference "composable-core-motion" */,
-				F5FFF58F28970E1600DD2AFB /* XCRemoteSwiftPackageReference "swift-composable-presentation" */,
 			);
 			productRefGroup = F5EF80BC287C743E0060FDC0 /* Products */;
 			projectDirPath = "";
@@ -666,14 +662,6 @@
 				minimumVersion = 0.1.1;
 			};
 		};
-		F5FFF58F28970E1600DD2AFB /* XCRemoteSwiftPackageReference "swift-composable-presentation" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/darrarski/swift-composable-presentation.git";
-			requirement = {
-				branch = main;
-				kind = branch;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -686,11 +674,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = F5FFF57028918B4800DD2AFB /* XCRemoteSwiftPackageReference "composable-core-motion" */;
 			productName = ComposableCoreMotion;
-		};
-		F5FFF59028970E1600DD2AFB /* ComposablePresentation */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = F5FFF58F28970E1600DD2AFB /* XCRemoteSwiftPackageReference "swift-composable-presentation" */;
-			productName = ComposablePresentation;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
