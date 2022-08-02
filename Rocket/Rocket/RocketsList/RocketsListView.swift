@@ -12,8 +12,7 @@ import ComposablePresentation
 //MARK: - State
 
 struct AppState: Equatable {
-    var detailState = DetailState(rocket: errorRocket)
-    var presentDetail = false
+    var detailState: DetailState? = nil
     var fetchingState = FetchingState.na
     var rockets = [Rocket]()
     var alert: AlertState<AppAction>?
@@ -33,8 +32,8 @@ enum AppAction: Equatable {
     case getRockets
     case rocketsResponse(Result<[Rocket], RocketsManager.Failure>)
     case detailAction(DetailAction)
-    case didTapDetailButton(Rocket?)
-    case didDismissDetail
+    case showDetail(Rocket?)
+    case dismissDetail
 }
 
 //MARK: - View
@@ -65,14 +64,14 @@ struct RocketsListView: View {
                             //MARK: -  Rocket info row containing:
                             // image, rocket name, first flight
                             
-                            NavigationLink(destination: RocketDetailView(store: self.store.scope(state: \.detailState, action: AppAction.detailAction)),
+                            NavigationLink(destination: IfLetStore(self.store.scope(state: \.detailState, action: AppAction.detailAction), then: RocketDetailView.init(store:)),
                                            isActive: Binding(
-                                            get: { viewStore.state.presentDetail },
+                                            get: { viewStore.state.detailState == nil ? false : true },
                                             set: { active in
                                                 if active {
-                                                    viewStore.send(.didTapDetailButton(rocket))
+                                                    viewStore.send(.showDetail(rocket))
                                                 } else {
-                                                    viewStore.send(.didDismissDetail)
+                                                    viewStore.send(.dismissDetail)
                                                 }
                                             }
                                            )) {

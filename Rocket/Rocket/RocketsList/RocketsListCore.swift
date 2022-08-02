@@ -21,7 +21,7 @@ struct AppEnvironment {
 
 let appReducer: Reducer<AppState, AppAction, AppEnvironment> = .combine(
     
-    detailReducer.pullback(state: \AppState.detailState,
+    detailReducer.optional().pullback(state: \AppState.detailState,
                            action: /AppAction.detailAction,
                            environment: { environment in
                                DetailEnvironment(motionManager: environment.motionManager)
@@ -60,13 +60,12 @@ let appReducer: Reducer<AppState, AppAction, AppEnvironment> = .combine(
         case .detailAction:
             return .none
             
-        case .didTapDetailButton(.some(let rocket)):
-            state.presentDetail = true
+        case .showDetail(.some(let rocket)):
             state.detailState = DetailState(rocket: rocket)
             return .none
             
-        case .didDismissDetail, .didTapDetailButton(.none):
-            state.presentDetail = false
+        case .dismissDetail, .showDetail(.none):
+            state.detailState = nil
             return .none
         }
     }
