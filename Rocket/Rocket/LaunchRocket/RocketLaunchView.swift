@@ -43,7 +43,7 @@ struct RocketLaunchView: View {
         WithViewStore(self.store) { viewStore in
             VStack {
                 // Launch rocket - change image & text
-                if viewStore.launchRocket {
+                if viewStore.launchRocket{
                     Image.ui.flyingRocket
                         .offset(y: -UIScreen.main.bounds.height)
                         .transition(.scale.animation(.default.speed(0.1)))

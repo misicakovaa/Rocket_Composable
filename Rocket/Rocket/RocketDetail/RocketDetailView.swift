@@ -30,7 +30,6 @@ struct RocketDetailView: View {
     var store: Store<DetailState, DetailAction>
     
     var body: some View {
-        
         WithViewStore(self.store) { viewStore in
             ScrollView {
                 
@@ -102,7 +101,6 @@ struct RocketDetailView: View {
     
     var parametersSectionView: some View {
         WithViewStore(self.store) { viewStore in
-            
             HStack {
                 ParameterView(
                     name: "height", number: Int(viewStore.rocket.height.meters), unit: "m")

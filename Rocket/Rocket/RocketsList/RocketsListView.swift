@@ -46,11 +46,9 @@ struct RocketsListView: View {
     }
     
     var body: some View {
-        
         WithViewStore(self.store) { viewStore in
             NavigationView {
                 switch viewStore.fetchingState {
-                    
                 case .loading:
                     ProgressView()
                     
@@ -62,23 +60,26 @@ struct RocketsListView: View {
                         // image, rocket name, first flight
                         
                         List {
-                            ForEachStore(self.store.scope(state: \.details,
-                                                          action: AppAction.detail(id:action:))) { detailStore in
+                            ForEachStore(
+                                self.store.scope(
+                                    state: \.details,
+                                    action: AppAction.detail(id:action:)
+                                )
+                            ) { detailStore in
                                 WithViewStore(detailStore) { detailViewStore in
-                                    NavigationLink(destination: RocketDetailView(store: detailStore),
-                                                   label: { RocketRow(rocketName: detailViewStore.rocket.rocketName,
-                                                                      firstFlight: detailViewStore.rocket.firstFlight) }
-                                    )
+                                    NavigationLink(destination: RocketDetailView(store: detailStore)) {
+                                        RocketRow(
+                                            rocketName: detailViewStore.rocket.rocketName,
+                                            firstFlight: detailViewStore.rocket.firstFlight
+                                        )
+                                    }
                                 }
                             }
                         }
                         .navigationTitle("Rockets")
                     }
                     
-                case .na:
-                    EmptyView()
-                    
-                case .error(_):
+                case .na, .error:
                     EmptyView()
                 }
             }

@@ -22,7 +22,6 @@ let launchReducer = Reducer<LaunchState, LaunchAction, LaunchEnvironment> { stat
     struct MotionManagerId: Hashable {}
     
     switch action {
-        
     case .launchRocket:
         state.launchRocket = true
         return .none
@@ -58,7 +57,6 @@ let launchReducer = Reducer<LaunchState, LaunchAction, LaunchEnvironment> { stat
         //MARK: - Successed motion update
         
     case let .motionUpdate(.success(deviceMotion)):
-        
         let pitch = deviceMotion.attitude.roll // TODO: Why does roll behave like pitch???
         
         if state.isFirstData && pitch != 0.0 {
