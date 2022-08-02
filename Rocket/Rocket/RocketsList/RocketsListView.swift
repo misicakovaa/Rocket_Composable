@@ -15,6 +15,7 @@ struct AppState: Equatable {
     var detailState: DetailState? = nil
     var fetchingState = FetchingState.na
     var rockets = [Rocket]()
+    var details = IdentifiedArrayOf<DetailState>()
     var alert: AlertState<AppAction>?
     
     enum FetchingState: Equatable {
@@ -31,9 +32,7 @@ enum AppAction: Equatable {
     case retry
     case getRockets
     case rocketsResponse(Result<[Rocket], RocketsManager.Failure>)
-    case detailAction(DetailAction)
-    case showDetail(Rocket?)
-    case dismissDetail
+    case detail(id: UUID, action: DetailAction)
 }
 
 //MARK: - View
@@ -55,28 +54,23 @@ struct RocketsListView: View {
                 case .loading:
                     ProgressView()
                     
-                case .success(let rockets):
+                case .success( _ ):
                     ZStack {
                         Color.ui.lightGrayList
                         
-                        List(rockets) { rocket in
-                            
-                            //MARK: -  Rocket info row containing:
-                            // image, rocket name, first flight
-                            
-                            NavigationLink(destination: IfLetStore(self.store.scope(state: \.detailState, action: AppAction.detailAction), then: RocketDetailView.init(store:)),
-                                           isActive: Binding(
-                                            get: { viewStore.state.detailState == nil ? false : true },
-                                            set: { active in
-                                                if active {
-                                                    viewStore.send(.showDetail(rocket))
-                                                } else {
-                                                    viewStore.send(.dismissDetail)
-                                                }
-                                            }
-                                           )) {
-                                               RocketRow(rocketName: rocket.rocketName, firstFlight: rocket.firstFlight)
-                                           }
+                        //MARK: -  Rocket info row containing:
+                        // image, rocket name, first flight
+                        
+                        List {
+                            ForEachStore(self.store.scope(state: \.details,
+                                                          action: AppAction.detail(id:action:))) { detailStore in
+                                WithViewStore(detailStore) { detailViewStore in
+                                    NavigationLink(destination: RocketDetailView(store: detailStore),
+                                                   label: { RocketRow(rocketName: detailViewStore.rocket.rocketName,
+                                                                      firstFlight: detailViewStore.rocket.firstFlight) }
+                                    )
+                                }
+                            }
                         }
                         .navigationTitle("Rockets")
                     }
@@ -103,7 +97,8 @@ struct RocketsListView_Previews: PreviewProvider {
                                      reducer: appReducer,
                                      environment: AppEnvironment(mainQueue: .main,
                                                                  rocketsManager: .live,
-                                                                 motionManager: .live)
+                                                                 motionManager: .live,
+                                                                 uuid: UUID.init)
                                     )
         )
     }

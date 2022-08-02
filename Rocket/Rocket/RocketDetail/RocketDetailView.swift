@@ -11,7 +11,8 @@ import ComposableCoreMotion
 
 //MARK: - State
 
-struct DetailState: Equatable {
+struct DetailState: Equatable, Identifiable {
+    var id: UUID
     var rocket: Rocket
     var launchState = LaunchState()
 }
@@ -125,7 +126,7 @@ struct RocketDetailView: View {
 struct RocketDetailView_Previews: PreviewProvider {
     static var previews: some View {
         RocketDetailView(
-            store: Store(initialState: DetailState(rocket: exampleRocket1),
+            store: Store(initialState: DetailState(id: .init(), rocket: exampleRocket1),
                          reducer: detailReducer,
                          environment: DetailEnvironment(motionManager: .live)
                         )

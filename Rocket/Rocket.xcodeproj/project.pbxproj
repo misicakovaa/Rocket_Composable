@@ -14,6 +14,7 @@
 		F580E547287D998E00281572 /* RocketLaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F580E546287D998E00281572 /* RocketLaunchView.swift */; };
 		F580E551287EC9EA00281572 /* PhotosSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F580E550287EC9EA00281572 /* PhotosSectionView.swift */; };
 		F5B60F1D288AA1ED0011E168 /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5B60F1C288AA1ED0011E168 /* ApiService.swift */; };
+		F5C41EFE28995265008DD5CC /* UUIDExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C41EFD28995265008DD5CC /* UUIDExtension.swift */; };
 		F5DBA073287D74F3002B87D0 /* ParameterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5DBA072287D74F2002B87D0 /* ParameterView.swift */; };
 		F5DBA075287D77CB002B87D0 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5DBA074287D77CB002B87D0 /* ColorExtension.swift */; };
 		F5DBA077287D7C55002B87D0 /* StageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5DBA076287D7C55002B87D0 /* StageView.swift */; };
@@ -56,6 +57,7 @@
 		F580E546287D998E00281572 /* RocketLaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketLaunchView.swift; sourceTree = "<group>"; };
 		F580E550287EC9EA00281572 /* PhotosSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosSectionView.swift; sourceTree = "<group>"; };
 		F5B60F1C288AA1ED0011E168 /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
+		F5C41EFD28995265008DD5CC /* UUIDExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UUIDExtension.swift; sourceTree = "<group>"; };
 		F5DBA072287D74F2002B87D0 /* ParameterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParameterView.swift; sourceTree = "<group>"; };
 		F5DBA074287D77CB002B87D0 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 		F5DBA076287D7C55002B87D0 /* StageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StageView.swift; sourceTree = "<group>"; };
@@ -137,6 +139,7 @@
 				F5DBA074287D77CB002B87D0 /* ColorExtension.swift */,
 				F515AEEF2886C2ED00A8007B /* StringExtension.swift */,
 				F51F4D2D288ED25800F1B4F5 /* DateFormatterExtension.swift */,
+				F5C41EFD28995265008DD5CC /* UUIDExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -336,6 +339,7 @@
 				F5DBA077287D7C55002B87D0 /* StageView.swift in Sources */,
 				F51F4D2E288ED25800F1B4F5 /* DateFormatterExtension.swift in Sources */,
 				F580E551287EC9EA00281572 /* PhotosSectionView.swift in Sources */,
+				F5C41EFE28995265008DD5CC /* UUIDExtension.swift in Sources */,
 				F5EF80D3287C7DA30060FDC0 /* RocketsManager.swift in Sources */,
 				F580E547287D998E00281572 /* RocketLaunchView.swift in Sources */,
 				F5FFF56328901AD100DD2AFB /* RocketDetailCore.swift in Sources */,

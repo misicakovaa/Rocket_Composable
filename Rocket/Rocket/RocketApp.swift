@@ -15,7 +15,7 @@ struct RocketApp: App {
             RocketsListView(
                 store: Store(initialState: AppState(),
                              reducer: appReducer,
-                             environment: AppEnvironment(mainQueue: .main, rocketsManager: .live, motionManager: .live)
+                             environment: AppEnvironment(mainQueue: .main, rocketsManager: .live, motionManager: .live, uuid: UUID.init)
                             )
             )
         }
