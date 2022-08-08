@@ -15,7 +15,7 @@ class RocketsListTest: XCTestCase {
     
     let testScheduler = DispatchQueue.test
     
-    func test_RocketsListCore_GetRockets_Success() {
+    func testRocketsListCoreGetRocketsSuccess() {
         
         let rockets = [exampleRocket1, exampleRocket2]
         let details: IdentifiedArrayOf<DetailState> = [DetailState(id:  UUID(uuidString: "00000000-0000-0000-0000-000000000000")!,

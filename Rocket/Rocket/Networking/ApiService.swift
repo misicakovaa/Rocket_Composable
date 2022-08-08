@@ -33,10 +33,6 @@ struct ApiService {
     
     private(set) var urlString: String
     
-    init(urlString: String) {
-        self.urlString = urlString
-    }
-    
     //MARK: - Change base URL
     
     mutating func addToBaseString(query: String) {

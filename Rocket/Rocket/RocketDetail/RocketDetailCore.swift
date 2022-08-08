@@ -17,18 +17,11 @@ struct DetailEnvironment {
 
 //MARK: - Reducer
 
-let detailReducer : Reducer<DetailState, DetailAction, DetailEnvironment> = .combine(
-    
-    launchReducer.pullback(state: \.launchState,
-                           action: /DetailAction.launchAction ,
-                           environment: { environment in
-                               LaunchEnvironment(motionManager: environment.motionManager)
-                           }),
-    
-        .init { state, action, _  in
-            switch action {
-            case .launchAction:
-                return .none
-            }
-        }
+let detailReducer : Reducer<DetailState, DetailAction, DetailEnvironment> =
+
+launchReducer.pullback(
+    state: \.launchState,
+    action: /DetailAction.launchAction,
+    environment: { LaunchEnvironment(motionManager: $0.motionManager) }
 )
+

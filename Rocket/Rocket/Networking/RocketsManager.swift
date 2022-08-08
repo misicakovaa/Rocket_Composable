@@ -10,20 +10,21 @@ import Combine
 import ComposableArchitecture
 
 struct RocketsManager {
-  var fetch: (String) -> Effect<[Rocket], Failure>
-
-  struct Failure: Error, Equatable {}
+    var fetchRockets: () -> Effect<[Rocket], Failure>
+    
+    struct Failure: Error, Equatable {}
 }
 
 extension RocketsManager {
-  static let live = Self(
-    fetch: { urlString in
-      Effect.task {
-          let apiService = ApiService(urlString: urlString)
-          return try await apiService.getData()
-      }
-      .mapError { _ in Failure() }
-      .eraseToEffect()
-    }
-  )
+    static let live = RocketsManager(
+        fetchRockets: {
+            Effect.task {
+                // TODO: inject urlString
+                let apiService = ApiService(urlString: "https://api.spacexdata.com/v3/rockets")
+                return try await apiService.getData()
+            }
+            .mapError { _ in Failure() }
+            .eraseToEffect()
+        }
+    )
 }
