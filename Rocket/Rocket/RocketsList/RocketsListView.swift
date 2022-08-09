@@ -34,7 +34,6 @@ enum AppAction: Equatable {
     case retry
     case getRockets
     case rocketsResponse(Result<[Rocket], RocketsManager.Failure>)
-    case detail(id: UUID, action: DetailAction)
 }
 
 //MARK: - View
