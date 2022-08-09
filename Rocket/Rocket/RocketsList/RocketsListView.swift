@@ -15,7 +15,6 @@ struct AppState: Equatable {
     var presentDetail = false
     var detailState: DetailState? = nil
     var fetchingState = FetchingState.na
-    var details = IdentifiedArrayOf<DetailState>()
     var alert: AlertState<AppAction>?
     
     enum FetchingState: Equatable {
@@ -29,8 +28,9 @@ struct AppState: Equatable {
 //MARK: - Action
 
 enum AppAction: Equatable {
-    case showDetail(Rocket)
-    case dismissDetail(Rocket)
+    case detailAction(DetailAction)
+    case showDetail(DetailState)
+    case dismissDetail
     case retry
     case getRockets
     case rocketsResponse(Result<[Rocket], RocketsManager.Failure>)
@@ -50,41 +50,29 @@ struct RocketsListView: View {
                 case .loading:
                     ProgressView()
                     
-                case .success:
+                case .success(let detailStates):
                     ZStack {
                         Color.ui.lightGrayList
                         
                         //MARK: -  Rocket info row containing:
                         // image, rocket name, first flight
                         
-                        List {
-                            ForEachStore(
-                                self.store.scope(
-                                    state: \.details,
-                                    action: AppAction.detail(id:action:)
+                        List(detailStates) { detailState in
+                            NavigationLink(
+                                destination: IfLetStore(
+                                    self.store.scope(
+                                        state: \.detailState,
+                                        action: AppAction.detailAction)
+                                ) {
+                                    RocketDetailView(store: $0)
+                                },
+                                isActive: Binding(
+                                    get: { viewStore.presentDetail },
+                                    set: { viewStore.send($0 ? .showDetail(detailState) : .dismissDetail) }
                                 )
-                            ) { detailStore in
-                                WithViewStore(detailStore) { detailViewStore in
-                                    NavigationLink(
-                                        destination: RocketDetailView(store: detailStore),
-                                        isActive: Binding(
-                                            get: { viewStore.presentDetail },
-                                            set: { active in
-                                                if active {
-                                                    viewStore.send(.showDetail(detailViewStore.rocket))
-                                                } else {
-                                                    viewStore.send(.dismissDetail(detailViewStore.rocket))
-                                                }
-                                            }
-                                        )
-                                    ) {
-                                        RocketRow(
-                                            rocketName: detailViewStore.rocket.rocketName,
-                                            firstFlight: detailViewStore.rocket.firstFlight
-                                        )
-                                    }
-                                    .isDetailLink(false)
-                                }
+                            ) {
+                                RocketRow(rocketName: detailState.rocket.rocketName,
+                                          firstFlight: detailState.rocket.firstFlight)
                             }
                         }
                         .navigationTitle("Rockets")
