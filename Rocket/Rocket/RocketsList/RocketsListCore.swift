@@ -23,10 +23,10 @@ struct AppEnvironment {
 let appReducer: Reducer<AppState, AppAction, AppEnvironment> = .combine(
     
     detailReducer.optional().pullback(
-            state: \.detailState,
-            action: /AppAction.detailAction,
-            environment: { DetailEnvironment(motionManager: $0.motionManager) }
-        ),
+        state: \.detailState,
+        action: /AppAction.detailAction,
+        environment: { DetailEnvironment(motionManager: $0.motionManager) }
+    ),
     
         .init { state, action, env in
             switch action {
@@ -64,17 +64,16 @@ let appReducer: Reducer<AppState, AppAction, AppEnvironment> = .combine(
                 state.alert = nil
                 return .init(value: .getRockets)
                 
-            case .showDetail(let detailState):
-                state.presentDetail = true
+            case .detailAction:
+                return .none
+                
+            case .setNavigation(selection: .none, detailState: let detailState):
+                state.selection = nil
+                return .none
+                
+            case .setNavigation(selection: .some(let selectionId), detailState: let detailState):
+                state.selection = Identified(detailState, id: selectionId)
                 state.detailState = detailState
-                return .none
-                
-            case .dismissDetail:
-                state.presentDetail = false
-                state.detailState = nil
-                return .none
-                
-            case .detailAction(_):
                 return .none
             }
         }
