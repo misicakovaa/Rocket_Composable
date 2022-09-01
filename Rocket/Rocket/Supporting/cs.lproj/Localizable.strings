@@ -1,0 +1,45 @@
+/* No comment provided by engineer. */
+"%@ Stage" = "%@ Fáze";
+
+/* No comment provided by engineer. */
+"%lld engine" = "%lld motor";
+
+/* No comment provided by engineer. */
+"%lld engines" = "%lld motory";
+
+/* No comment provided by engineer. */
+"%lld seconds burn time" = "%lld sekund spalování";
+
+/* No comment provided by engineer. */
+"%lld tons of fuel" = "%lld tun paliva";
+
+/* (No Comment) */
+"FirstFlight: %@" = "První let: %@";
+
+/* No comment provided by engineer. */
+"Launch" = "Odpálení";
+
+/* No comment provided by engineer. */
+"Launch successfull!" = "Odpálení bylo úspěšné!";
+
+/* No comment provided by engineer. */
+"Move your phone up \nto launch the rocket" = "Hýbej zařízením pro odpálení rakety";
+
+/* No comment provided by engineer. */
+"not reusable" = "není znovupoužitelné";
+
+/* No comment provided by engineer. */
+"Overview" = "Přehled";
+
+/* No comment provided by engineer. */
+"Parameters" = "Parametry";
+
+/* No comment provided by engineer. */
+"Photos" = "Fotky";
+
+/* No comment provided by engineer. */
+"reusable" = "znovupoužitelné";
+
+/* Rockets list view */
+"Rockets" = "Rakety";
+
