@@ -15,7 +15,7 @@ class RocketsListTest: XCTestCase {
     
     let testScheduler = DispatchQueue.test
     
-    func test_RocketsListCore_GetRockets_Success() {
+    func testRocketsListCoreGetRocketsSuccess() {
         
         let rockets = [exampleRocket1, exampleRocket2]
         let details: IdentifiedArrayOf<DetailState> = [DetailState(id:  UUID(uuidString: "00000000-0000-0000-0000-000000000000")!,
@@ -23,11 +23,11 @@ class RocketsListTest: XCTestCase {
                                                        DetailState(id:  UUID(uuidString: "00000000-0000-0000-0000-000000000001")!,
                                                                    rocket: exampleRocket2)]
         
-        let testFetch: ( String ) -> Effect<[Rocket], RocketsManager.Failure> = { _ in
+        let testFetch: () -> Effect<[Rocket], RocketsManager.Failure> = {
             Effect<[Rocket], RocketsManager.Failure> (value: rockets)
         }
         
-        let rocketsManager = RocketsManager(fetch: testFetch)
+        let rocketsManager = RocketsManager(fetchRockets: testFetch)
         
         let store = TestStore(initialState: AppState(),
                               reducer: appReducer,
@@ -43,9 +43,7 @@ class RocketsListTest: XCTestCase {
         
         store
             .receive(.rocketsResponse(Result.success(rockets))) {
-                $0.fetchingState = .success(rockets)
-                $0.rockets = rockets
-                $0.details = details
+                $0.fetchingState = .success(details)
             }
     }
 }

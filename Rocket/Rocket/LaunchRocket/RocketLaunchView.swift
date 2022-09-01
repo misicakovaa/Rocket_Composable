@@ -35,10 +35,6 @@ struct RocketLaunchView: View {
     
     var store: Store<LaunchState, LaunchAction>
     
-    init(store: Store<LaunchState,LaunchAction>) {
-        self.store = store
-    }
-    
     var body: some View {
         WithViewStore(self.store) { viewStore in
             VStack {

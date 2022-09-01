@@ -13,7 +13,7 @@ import ComposableCoreMotion
 
 class RocketsLaunchCoreTest: XCTestCase {
     
-    func test_LaunchRocketCore_MotionUpdates() {
+    func testLaunchRocketCoreMotionUpdates() {
         
         let motionSubject = PassthroughSubject<DeviceMotion, Error>()
         

@@ -8,18 +8,18 @@
 
 /* Begin PBXBuildFile section */
 		F515AEED2886C17D00A8007B /* RocketRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F515AEEC2886C17D00A8007B /* RocketRow.swift */; };
-		F515AEF02886C2ED00A8007B /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F515AEEF2886C2ED00A8007B /* StringExtension.swift */; };
-		F51F4D2E288ED25800F1B4F5 /* DateFormatterExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F51F4D2D288ED25800F1B4F5 /* DateFormatterExtension.swift */; };
+		F515AEF02886C2ED00A8007B /* String+formateDateString.swift in Sources */ = {isa = PBXBuildFile; fileRef = F515AEEF2886C2ED00A8007B /* String+formateDateString.swift */; };
+		F51F4D2E288ED25800F1B4F5 /* DateFormatter+.swift in Sources */ = {isa = PBXBuildFile; fileRef = F51F4D2D288ED25800F1B4F5 /* DateFormatter+.swift */; };
 		F51F4D31288EF49D00F1B4F5 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F51F4D2F288EF49D00F1B4F5 /* Localizable.strings */; };
 		F580E547287D998E00281572 /* RocketLaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F580E546287D998E00281572 /* RocketLaunchView.swift */; };
 		F580E551287EC9EA00281572 /* PhotosSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F580E550287EC9EA00281572 /* PhotosSectionView.swift */; };
 		F5B60F1D288AA1ED0011E168 /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5B60F1C288AA1ED0011E168 /* ApiService.swift */; };
-		F5C41EFE28995265008DD5CC /* UUIDExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C41EFD28995265008DD5CC /* UUIDExtension.swift */; };
+		F5C41EFE28995265008DD5CC /* UUID+incrementing.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C41EFD28995265008DD5CC /* UUID+incrementing.swift */; };
 		F5DBA073287D74F3002B87D0 /* ParameterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5DBA072287D74F2002B87D0 /* ParameterView.swift */; };
-		F5DBA075287D77CB002B87D0 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5DBA074287D77CB002B87D0 /* ColorExtension.swift */; };
+		F5DBA075287D77CB002B87D0 /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5DBA074287D77CB002B87D0 /* Color+.swift */; };
 		F5DBA077287D7C55002B87D0 /* StageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5DBA076287D7C55002B87D0 /* StageView.swift */; };
 		F5E7C28E2887F2350097715D /* TitledSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E7C28D2887F2350097715D /* TitledSection.swift */; };
-		F5E7C2902887FBB10097715D /* ImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E7C28F2887FBB10097715D /* ImageExtension.swift */; };
+		F5E7C2902887FBB10097715D /* Image+.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E7C28F2887FBB10097715D /* Image+.swift */; };
 		F5E7C2922887FDF60097715D /* StageRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E7C2912887FDF60097715D /* StageRow.swift */; };
 		F5EF80BF287C743E0060FDC0 /* RocketApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5EF80BE287C743E0060FDC0 /* RocketApp.swift */; };
 		F5EF80C1287C743E0060FDC0 /* RocketsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5EF80C0287C743E0060FDC0 /* RocketsListView.swift */; };
@@ -50,19 +50,19 @@
 
 /* Begin PBXFileReference section */
 		F515AEEC2886C17D00A8007B /* RocketRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketRow.swift; sourceTree = "<group>"; };
-		F515AEEF2886C2ED00A8007B /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
-		F51F4D2D288ED25800F1B4F5 /* DateFormatterExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatterExtension.swift; sourceTree = "<group>"; };
+		F515AEEF2886C2ED00A8007B /* String+formateDateString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+formateDateString.swift"; sourceTree = "<group>"; };
+		F51F4D2D288ED25800F1B4F5 /* DateFormatter+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+.swift"; sourceTree = "<group>"; };
 		F51F4D30288EF49D00F1B4F5 /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F51F4D32288EF4A800F1B4F5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F580E546287D998E00281572 /* RocketLaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketLaunchView.swift; sourceTree = "<group>"; };
 		F580E550287EC9EA00281572 /* PhotosSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosSectionView.swift; sourceTree = "<group>"; };
 		F5B60F1C288AA1ED0011E168 /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
-		F5C41EFD28995265008DD5CC /* UUIDExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UUIDExtension.swift; sourceTree = "<group>"; };
+		F5C41EFD28995265008DD5CC /* UUID+incrementing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UUID+incrementing.swift"; sourceTree = "<group>"; };
 		F5DBA072287D74F2002B87D0 /* ParameterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParameterView.swift; sourceTree = "<group>"; };
-		F5DBA074287D77CB002B87D0 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
+		F5DBA074287D77CB002B87D0 /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
 		F5DBA076287D7C55002B87D0 /* StageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StageView.swift; sourceTree = "<group>"; };
 		F5E7C28D2887F2350097715D /* TitledSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitledSection.swift; sourceTree = "<group>"; };
-		F5E7C28F2887FBB10097715D /* ImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageExtension.swift; sourceTree = "<group>"; };
+		F5E7C28F2887FBB10097715D /* Image+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+.swift"; sourceTree = "<group>"; };
 		F5E7C2912887FDF60097715D /* StageRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StageRow.swift; sourceTree = "<group>"; };
 		F5EF80BB287C743E0060FDC0 /* Rocket.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Rocket.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5EF80BE287C743E0060FDC0 /* RocketApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketApp.swift; sourceTree = "<group>"; };
@@ -135,11 +135,11 @@
 		F515AEEE2886C2D800A8007B /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				F5E7C28F2887FBB10097715D /* ImageExtension.swift */,
-				F5DBA074287D77CB002B87D0 /* ColorExtension.swift */,
-				F515AEEF2886C2ED00A8007B /* StringExtension.swift */,
-				F51F4D2D288ED25800F1B4F5 /* DateFormatterExtension.swift */,
-				F5C41EFD28995265008DD5CC /* UUIDExtension.swift */,
+				F5E7C28F2887FBB10097715D /* Image+.swift */,
+				F5DBA074287D77CB002B87D0 /* Color+.swift */,
+				F515AEEF2886C2ED00A8007B /* String+formateDateString.swift */,
+				F51F4D2D288ED25800F1B4F5 /* DateFormatter+.swift */,
+				F5C41EFD28995265008DD5CC /* UUID+incrementing.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -337,20 +337,20 @@
 				F5FFF5612890158200DD2AFB /* RocketsListCore.swift in Sources */,
 				F5EF80D1287C7C950060FDC0 /* RocketsData.swift in Sources */,
 				F5DBA077287D7C55002B87D0 /* StageView.swift in Sources */,
-				F51F4D2E288ED25800F1B4F5 /* DateFormatterExtension.swift in Sources */,
+				F51F4D2E288ED25800F1B4F5 /* DateFormatter+.swift in Sources */,
 				F580E551287EC9EA00281572 /* PhotosSectionView.swift in Sources */,
-				F5C41EFE28995265008DD5CC /* UUIDExtension.swift in Sources */,
+				F5C41EFE28995265008DD5CC /* UUID+incrementing.swift in Sources */,
 				F5EF80D3287C7DA30060FDC0 /* RocketsManager.swift in Sources */,
 				F580E547287D998E00281572 /* RocketLaunchView.swift in Sources */,
 				F5FFF56328901AD100DD2AFB /* RocketDetailCore.swift in Sources */,
 				F5FFF56528901DC000DD2AFB /* LaunchRocketCore.swift in Sources */,
 				F5EF80D5287CBE430060FDC0 /* RocketDetailView.swift in Sources */,
-				F5DBA075287D77CB002B87D0 /* ColorExtension.swift in Sources */,
+				F5DBA075287D77CB002B87D0 /* Color+.swift in Sources */,
 				F5EF80C1287C743E0060FDC0 /* RocketsListView.swift in Sources */,
-				F5E7C2902887FBB10097715D /* ImageExtension.swift in Sources */,
+				F5E7C2902887FBB10097715D /* Image+.swift in Sources */,
 				F5DBA073287D74F3002B87D0 /* ParameterView.swift in Sources */,
 				F5E7C28E2887F2350097715D /* TitledSection.swift in Sources */,
-				F515AEF02886C2ED00A8007B /* StringExtension.swift in Sources */,
+				F515AEF02886C2ED00A8007B /* String+formateDateString.swift in Sources */,
 				F5EF80BF287C743E0060FDC0 /* RocketApp.swift in Sources */,
 				F5B60F1D288AA1ED0011E168 /* ApiService.swift in Sources */,
 				F5FFF5772891BDE800DD2AFB /* Stages.swift in Sources */,

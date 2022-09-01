@@ -124,10 +124,11 @@ struct RocketDetailView: View {
 struct RocketDetailView_Previews: PreviewProvider {
     static var previews: some View {
         RocketDetailView(
-            store: Store(initialState: DetailState(id: .init(), rocket: exampleRocket1),
-                         reducer: detailReducer,
-                         environment: DetailEnvironment(motionManager: .live)
-                        )
+            store: Store(
+                initialState: DetailState(id: .init(), rocket: exampleRocket1),
+                reducer: detailReducer,
+                environment: DetailEnvironment(motionManager: .live)
+            )
         )
     }
 }

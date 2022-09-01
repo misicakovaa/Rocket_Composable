@@ -17,7 +17,7 @@ struct LaunchEnvironment {
 
 //MARK: - Reducer
 
-let launchReducer = Reducer<LaunchState, LaunchAction, LaunchEnvironment> { state, action, environment in
+let launchReducer = Reducer<LaunchState, LaunchAction, LaunchEnvironment> { state, action, env in
     
     struct MotionManagerId: Hashable {}
     
@@ -30,11 +30,11 @@ let launchReducer = Reducer<LaunchState, LaunchAction, LaunchEnvironment> { stat
         
     case .startAnalyzing:
         return .concatenate(
-            environment.motionManager
+            env.motionManager
                 .create(id: MotionManagerId())
                 .fireAndForget(),
             
-            environment.motionManager
+            env.motionManager
                 .startDeviceMotionUpdates(id: MotionManagerId(), using: .xMagneticNorthZVertical, to: .main)
                 .mapError { $0 as NSError }
                 .catchToEffect()
@@ -45,11 +45,11 @@ let launchReducer = Reducer<LaunchState, LaunchAction, LaunchEnvironment> { stat
         
     case .stopAnalyzing:
         return .concatenate(
-            environment.motionManager
+            env.motionManager
                 .stopDeviceMotionUpdates(id: MotionManagerId())
                 .fireAndForget(),
             
-            environment.motionManager
+            env.motionManager
                 .destroy(id: MotionManagerId())
                 .fireAndForget()
         )

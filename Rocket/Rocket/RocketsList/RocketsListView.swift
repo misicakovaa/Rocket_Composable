@@ -14,14 +14,13 @@ import ComposablePresentation
 struct AppState: Equatable {
     var detailState: DetailState? = nil
     var fetchingState = FetchingState.na
-    var rockets = [Rocket]()
-    var details = IdentifiedArrayOf<DetailState>()
     var alert: AlertState<AppAction>?
+    var selection: Identified<DetailState.ID, DetailState>?
     
     enum FetchingState: Equatable {
         case na
         case loading
-        case success([Rocket])
+        case success(IdentifiedArrayOf<DetailState>)
         case error(String)
     }
 }
@@ -29,10 +28,11 @@ struct AppState: Equatable {
 //MARK: - Action
 
 enum AppAction: Equatable {
+    case setNavigation(selection: UUID?, detailState: DetailState)
+    case detailAction(DetailAction)
     case retry
     case getRockets
     case rocketsResponse(Result<[Rocket], RocketsManager.Failure>)
-    case detail(id: UUID, action: DetailAction)
 }
 
 //MARK: - View
@@ -41,10 +41,6 @@ struct RocketsListView: View {
     
     var store: Store<AppState, AppAction>
     
-    init(store: Store<AppState, AppAction>) {
-        self.store = store
-    }
-    
     var body: some View {
         WithViewStore(self.store) { viewStore in
             NavigationView {
@@ -52,28 +48,30 @@ struct RocketsListView: View {
                 case .loading:
                     ProgressView()
                     
-                case .success( _ ):
+                case .success(let detailStates):
                     ZStack {
                         Color.ui.lightGrayList
                         
                         //MARK: -  Rocket info row containing:
                         // image, rocket name, first flight
                         
-                        List {
-                            ForEachStore(
-                                self.store.scope(
-                                    state: \.details,
-                                    action: AppAction.detail(id:action:)
+                        List(detailStates) { detailState in
+                            NavigationLink(
+                                destination: IfLetStore(
+                                    self.store.scope(
+                                        state: \.detailState,
+                                        action: AppAction.detailAction)
+                                ) {
+                                    RocketDetailView(store: $0)
+                                },
+                                tag: detailState.id,
+                                selection: viewStore.binding(
+                                    get: \.selection?.id,
+                                    send: { AppAction.setNavigation(selection: $0, detailState: detailState) }
                                 )
-                            ) { detailStore in
-                                WithViewStore(detailStore) { detailViewStore in
-                                    NavigationLink(destination: RocketDetailView(store: detailStore)) {
-                                        RocketRow(
-                                            rocketName: detailViewStore.rocket.rocketName,
-                                            firstFlight: detailViewStore.rocket.firstFlight
-                                        )
-                                    }
-                                }
+                            ) {
+                                RocketRow(rocketName: detailState.rocket.rocketName,
+                                          firstFlight: detailState.rocket.firstFlight)
                             }
                         }
                         .navigationTitle("Rockets")
@@ -94,13 +92,16 @@ struct RocketsListView: View {
 
 struct RocketsListView_Previews: PreviewProvider {
     static var previews: some View {
-        RocketsListView(store: Store(initialState: AppState(),
-                                     reducer: appReducer,
-                                     environment: AppEnvironment(mainQueue: .main,
-                                                                 rocketsManager: .live,
-                                                                 motionManager: .live,
-                                                                 uuid: UUID.init)
-                                    )
+        RocketsListView(
+            store: Store(
+                initialState: AppState(),
+                reducer: appReducer,
+                environment: AppEnvironment(
+                    mainQueue: .main,
+                    rocketsManager: .live,
+                    motionManager: .live,
+                    uuid: UUID.init)
+            )
         )
     }
 }
